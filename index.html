@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credentialing Quality & Compliance Agent - Strategic Assessment</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    
+    <!-- Color Palette: Vibrant Tech Blues -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Blue 900
+                        accent: '#06b6d4',  // Cyan 500
+                        surface: '#f8fafc', // Slate 50
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        /* Chart Container Rules - MANDATORY STYLING */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; 
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Timeline Connector Line */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        /* Connector Lines for Diagram */
+        .connector-v {
+            width: 2px;
+            background-color: #94a3b8; /* slate-400 */
+            margin: 0 auto;
+        }
+        .connector-h {
+            height: 2px;
+            background-color: #94a3b8;
+            width: 100%;
+        }
+    </style>
+    <!-- NO SVG OR MERMAID USED -->
+</head>
+<body class="bg-surface text-slate-800 font-sans leading-relaxed">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-primary to-cyan-600 text-white shadow-xl">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-sm font-bold tracking-widest uppercase opacity-80">CI&T  |  ANDROS</div>
+                <div class="text-sm font-bold tracking-widest uppercase opacity-80">AWS LEAP PROGRAM</div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                Credentialing Quality & Compliance Agent
+            </h1>
+            <p class="text-xl md:text-2xl text-cyan-50 max-w-4xl font-light leading-normal">
+                Automating 15,000 monthly provider audits using <strong>Amazon Nova</strong> & <strong>AWS Bedrock</strong>. Transforming a 40-minute manual bottleneck into a <span class="border-b-2 border-yellow-400">&lt;5 minute</span> AI-driven process.
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 space-y-20">
+
+        <!-- SECTION 1: THE CHALLENGE & KPI SNAPSHOT -->
+        <section>
+            <div class="mb-8 border-l-4 border-accent pl-6">
+                <h2 class="text-3xl font-bold text-primary">The Operational Challenge</h2>
+                <p class="text-lg text-slate-600 mt-2 max-w-3xl">
+                    Andros processes ~15,000 provider files monthly. With manual reviews taking 40 minutes per file, the operational burden is unsustainable. The new solution leverages Amazon Nova to drastically reduce cycle time and cost.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chart 1: Time Reduction -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-slate-100">
+                    <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center">
+                        <span class="text-2xl mr-3">⏱️</span> Audit Cycle Time Reduction
+                    </h3>
+                    <div class="chart-container max-w-xl">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-slate-500 mt-4">Target: <strong>87% Reduction</strong> in manual effort</p>
+                </div>
+
+                <!-- Chart 2: Cost Efficiency (Amazon Nova) -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border border-slate-100">
+                    <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center">
+                        <span class="text-2xl mr-3">💰</span> Cost Efficiency Model
+                    </h3>
+                    <div class="chart-container max-w-xl">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-slate-500 mt-4">Amazon Nova drastically lowers run costs ($0.01 - $0.02)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SOLUTION ARCHITECTURE -->
+        <section class="bg-white rounded-2xl shadow-xl p-10 border border-slate-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary">The "Assembly Line" Architecture</h2>
+                <p class="text-slate-600 max-w-3xl mx-auto mt-4 text-lg">
+                    We utilize a <strong>"Traffic Controller"</strong> to manage the workflow. It acts as a project manager that never sleeps—assigning tasks to the "Mailroom Sorter" and "Specialized Inspectors" while tracking every single file.
+                </p>
+            </div>
+
+            <!-- HTML/CSS Flowchart -->
+            <div class="flex flex-col items-center relative w-full">
+                
+                <!-- Level 1: Ingestion -->
+                <div class="w-72 bg-slate-50 p-5 rounded-lg border-2 border-slate-200 text-center shadow-sm z-10 hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-2">📂</div>
+                    <h4 class="font-bold text-primary text-lg">Ingestion</h4>
+                    <p class="text-sm text-slate-500">S3 Event Trigger</p>
+                </div>
+
+                <div class="h-10 connector-v"></div>
+
+                <!-- Level 2: Traffic Controller -->
+                <div class="w-72 bg-indigo-50 p-5 rounded-lg border-2 border-indigo-200 text-center shadow-md z-10 hover:shadow-lg transition-shadow">
+                    <div class="text-4xl mb-2">🚦</div>
+                    <h4 class="font-bold text-primary text-lg">Traffic Controller</h4>
+                    <p class="text-sm text-slate-500">AWS Step Functions</p>
+                    <p class="text-xs text-indigo-400 mt-1 italic">"The Manager that never sleeps"</p>
+                </div>
+
+                <div class="h-10 connector-v"></div>
+
+                <!-- Level 3: Sorter -->
+                <div class="w-72 bg-cyan-50 p-5 rounded-lg border-2 border-cyan-200 text-center shadow-sm z-10 hover:shadow-md transition-shadow">
+                    <div class="text-4xl mb-2">👁️</div>
+                    <h4 class="font-bold text-primary text-lg">The Sorter</h4>
+                    <p class="text-sm text-slate-500">Amazon Nova Lite</p>
+                    <p class="text-xs text-cyan-500 mt-1 italic">"The Mailroom: Classify & Extract"</p>
+                </div>
+
+                <!-- Connector System for Branching -->
+                <div class="h-10 connector-v"></div>
+                <div class="w-full max-w-6xl connector-h relative">
+                    <!-- Vertical connectors dropping from the horizontal line -->
+                    <div class="absolute left-0 top-0 h-10 connector-v" style="left: 12.5%;"></div> <!-- Agent A -->
+                    <div class="absolute left-0 top-0 h-10 connector-v" style="left: 37.5%;"></div> <!-- Agent B -->
+                    <div class="absolute left-0 top-0 h-10 connector-v" style="left: 62.5%;"></div> <!-- Agent C -->
+                    <div class="absolute left-0 top-0 h-10 connector-v" style="left: 87.5%;"></div> <!-- Agent D -->
+                </div>
+                <div class="h-10"></div> <!-- Spacer for the drop -->
+
+                <!-- Level 4: Micro-Agents (Parallel) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-4">
+                    <!-- Agent A -->
+                    <div class="bg-white p-5 rounded-lg border-t-8 border-blue-600 shadow-md text-center hover:-translate-y-1 transition-transform">
+                        <div class="font-bold text-blue-900 text-lg">Identity Agent</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Nova Pro</div>
+                        <hr class="my-3 border-slate-100">
+                        <p class="text-xs text-slate-600 text-left leading-snug">
+                            Checks NPI/TIN formats and name consistency across files.
+                        </p>
+                    </div>
+                    <!-- Agent B -->
+                    <div class="bg-white p-5 rounded-lg border-t-8 border-cyan-500 shadow-md text-center hover:-translate-y-1 transition-transform">
+                        <div class="font-bold text-blue-900 text-lg">License Agent</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Nova Pro</div>
+                        <hr class="my-3 border-slate-100">
+                        <p class="text-xs text-slate-600 text-left leading-snug">
+                            Validates State License Expiration, DEA Status, and Board Certs.
+                        </p>
+                    </div>
+                    <!-- Agent C -->
+                    <div class="bg-white p-5 rounded-lg border-t-8 border-indigo-500 shadow-md text-center hover:-translate-y-1 transition-transform">
+                        <div class="font-bold text-blue-900 text-lg">Career Agent</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Nova Pro</div>
+                        <hr class="my-3 border-slate-100">
+                        <p class="text-xs text-slate-600 text-left leading-snug">
+                            <strong>Complex Reasoning:</strong> Parses CVs for gaps > 6 months.
+                        </p>
+                    </div>
+                    <!-- Agent D -->
+                    <div class="bg-white p-5 rounded-lg border-t-8 border-red-500 shadow-md text-center hover:-translate-y-1 transition-transform">
+                        <div class="font-bold text-blue-900 text-lg">Risk Agent</div>
+                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Nova Pro + Lambda</div>
+                        <hr class="my-3 border-slate-100">
+                        <p class="text-xs text-slate-600 text-left leading-snug">
+                            <strong>External Data:</strong> Queries OIG/SAM for sanctions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="h-10 connector-v mt-6"></div>
+
+                <!-- Level 5: Decision -->
+                <div class="w-72 bg-emerald-50 p-5 rounded-lg border-2 border-emerald-200 text-center shadow-md z-10">
+                    <div class="text-4xl mb-2">⚖️</div>
+                    <h4 class="font-bold text-primary text-lg">The Verdict</h4>
+                    <p class="text-sm text-slate-500">Aggregator & Severity Decision</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE MICRO-AGENT STRATEGY (The "How") -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-primary">The "Micro-Agent" Strategy</h2>
+                <p class="text-lg text-slate-600 mt-2 max-w-4xl">
+                    To ensure accuracy, we do not feed the entire rulebook into one AI prompt. We split the <strong>9 Validation Rules</strong> into 4 specialized agents.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Agent A: Identity -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6 text-blue-800">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center text-2xl mr-4 shadow-sm">🆔</div>
+                        <div>
+                            <h3 class="text-xl font-bold">The Identity Agent</h3>
+                            <p class="text-sm text-slate-500 italic">"Who is this and are documents consistent?"</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mt-auto">
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-blue-500"><strong>Rule 1:</strong> NPI (10-digit) & TIN Format Check.</li>
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-blue-500"><strong>Rule 8:</strong> Document Freshness (< 180 days).</li>
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-blue-500"><strong>Rule 9:</strong> Missing Document Check.</li>
+                    </ul>
+                </div>
+
+                <!-- Agent B: License -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6 text-cyan-800">
+                        <div class="w-14 h-14 bg-cyan-100 rounded-full flex items-center justify-center text-2xl mr-4 shadow-sm">📜</div>
+                        <div>
+                            <h3 class="text-xl font-bold">The License Agent</h3>
+                            <p class="text-sm text-slate-500 italic">"Is this person legally allowed to practice?"</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mt-auto">
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-cyan-500"><strong>Rule 2:</strong> State License Expiration & Match.</li>
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-cyan-500"><strong>Rule 6:</strong> DEA Certificate Active Status.</li>
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-cyan-500"><strong>Rule 7:</strong> Board Certification Verification.</li>
+                    </ul>
+                </div>
+
+                <!-- Agent C: Career -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6 text-indigo-800">
+                        <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center text-2xl mr-4 shadow-sm">📅</div>
+                        <div>
+                            <h3 class="text-xl font-bold">The Career Agent</h3>
+                            <p class="text-sm text-slate-500 italic">"Does their work history make sense?"</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mt-auto">
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-indigo-500"><strong>Rule 4:</strong> Work History Gap Analysis (> 6 months).</li>
+                        <li class="text-xs text-slate-400 mt-2 px-2 bg-indigo-50 p-2 rounded">
+                            *Uses <strong>Nova Pro</strong> to read unstructured CVs and find explanations for gaps (e.g., "Sabbatical").
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Agent D: Risk -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6 text-red-800">
+                        <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-2xl mr-4 shadow-sm">🚫</div>
+                        <div>
+                            <h3 class="text-xl font-bold">The Risk Agent</h3>
+                            <p class="text-sm text-slate-500 italic">"Is this person on a blacklist?"</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mt-auto">
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-red-500"><strong>Rule 3:</strong> Malpractice Insurance Limits ($1M/$3M).</li>
+                        <li class="bg-slate-50 p-3 rounded text-sm border-l-4 border-red-500"><strong>Rule 5:</strong> Sanctions Check (OIG/SAM/OFAC via Lambda).</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: DEEP DIVE DATA -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Plotly 3D Chart -->
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-8 border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-700 mb-2">Complexity vs. Risk Analysis</h3>
+                <p class="text-sm text-slate-500 mb-6">
+                    Why we need <strong>Amazon Nova Pro</strong>: Simple models fail when file complexity (Pages) and Risk Factors (Gaps/Sanctions) increase.
+                    <br><span class="text-xs italic text-accent font-semibold">Interactive: Rotate and Zoom</span>
+                </p>
+                <div id="riskPlot" class="w-full h-96 border border-slate-50 rounded"></div>
+            </div>
+
+            <!-- ROI Stacked Chart -->
+            <div class="lg:col-span-1 bg-white rounded-xl shadow-lg p-8 border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-700 mb-4">Capacity Gains</h3>
+                <p class="text-sm text-slate-500 mb-6">
+                    Freeing up <strong>~9,750 hours/month</strong> allows the team to focus on provider relationships.
+                </p>
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ROADMAP -->
+        <section class="bg-white p-10 rounded-2xl border border-slate-200 shadow-xl">
+            <h2 class="text-3xl font-bold text-primary mb-12 text-center">Implementation Roadmap</h2>
+            
+            <div class="relative max-w-5xl mx-auto timeline-line pl-8 space-y-16">
+                
+                <!-- Phase 1 -->
+                <div class="relative z-10">
+                    <div class="absolute -left-10 top-0 w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg border-4 border-white">1</div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border-l-4 border-blue-600 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-slate-800">Phase 1: MVP & Core Rules</h3>
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Weeks 1-8</span>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 font-semibold">Goal: Automate "Happy Path" & Critical Fails (Identity, License, Sanctions)</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="text-sm border-l-2 border-blue-200 pl-3">
+                                <strong class="text-blue-800 block">Sprint 1: Foundation</strong>
+                                <span class="text-slate-500 text-xs">AWS/VPC, Bedrock Access (Nova Pro/Lite), S3.</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-blue-200 pl-3">
+                                <strong class="text-blue-800 block">Sprint 2: Ingestion</strong>
+                                <span class="text-slate-500 text-xs">Nova Lite "Doc Intelligence". S3 -> Lambda.</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-blue-200 pl-3">
+                                <strong class="text-blue-800 block">Sprint 3: Core Rules</strong>
+                                <span class="text-slate-500 text-xs">Rules 1, 2, 6, 9 (Binary/High-Impact).</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-blue-200 pl-3">
+                                <strong class="text-blue-800 block">Sprint 4: Severity Engine</strong>
+                                <span class="text-slate-500 text-xs">JSON output & Severity Logic.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative z-10">
+                    <div class="absolute -left-10 top-0 w-9 h-9 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg border-4 border-white">2</div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border-l-4 border-cyan-500 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-slate-800">Phase 2: Advanced Logic</h3>
+                            <span class="bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Weeks 9-12</span>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 font-semibold">Goal: Complex Rules (Work History) & Human-in-the-Loop</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <div class="text-sm border-l-2 border-cyan-200 pl-3">
+                                <strong class="text-cyan-700 block">Sprint 5: Complex Agents</strong>
+                                <span class="text-slate-500 text-xs">Rule 4 (CV Gaps > 6 mo).</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-cyan-200 pl-3">
+                                <strong class="text-cyan-700 block">Sprint 6: External Data</strong>
+                                <span class="text-slate-500 text-xs">Rules 3, 5 (OIG/SAM integration).</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-cyan-200 pl-3">
+                                <strong class="text-cyan-700 block">Sprint 7: Human UI</strong>
+                                <span class="text-slate-500 text-xs">Review workflow for exceptions.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative z-10">
+                    <div class="absolute -left-10 top-0 w-9 h-9 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg border-4 border-white">3</div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border-l-4 border-indigo-600 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-slate-800">Phase 3: Scaling</h3>
+                            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Weeks 13-16</span>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 font-semibold">Goal: Volume, Multi-Client Config, Full Rollout</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <div class="text-sm border-l-2 border-indigo-200 pl-3">
+                                <strong class="text-indigo-700 block">Sprint 8: Config</strong>
+                                <span class="text-slate-500 text-xs">DynamoDB for client overrides.</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-indigo-200 pl-3">
+                                <strong class="text-indigo-700 block">Sprint 9: Tuning</strong>
+                                <span class="text-slate-500 text-xs">Caching & Performance.</span>
+                            </div>
+                            <div class="text-sm border-l-2 border-indigo-200 pl-3">
+                                <strong class="text-indigo-700 block">Sprint 10: Cutover</strong>
+                                <span class="text-slate-500 text-xs">Canary -> Full Rollout.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="text-center text-slate-400 text-sm pt-8 pb-4">
+            <p>&copy; 2025 CI&T | Andros | AWS LEAP Assessment</p>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- UTILITY: Label Wrapping Helper ---
+        function wrapLabel(str, maxChars = 16) {
+            if (str.length <= maxChars) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxChars) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- UTILITY: Common Tooltip Config ---
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- CHART 1: TIME REDUCTION ---
+        const ctxTime = document.getElementById('timeChart').getContext('2d');
+        const rawTimeLabels = ["Manual Audit Process", "AI Agent + Human Review"];
+        
+        new Chart(ctxTime, {
+            type: 'bar',
+            data: {
+                labels: rawTimeLabels.map(l => wrapLabel(l, 20)),
+                datasets: [{
+                    label: 'Minutes per File',
+                    data: [40, 5],
+                    backgroundColor: ['#94a3b8', '#06b6d4'],
+                    borderColor: ['#64748b', '#0891b2'],
+                    borderWidth: 1,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltipOptions
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Minutes' }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: COST EFFICIENCY ---
+        const ctxCost = document.getElementById('costChart').getContext('2d');
+        const rawCostLabels = ["Legacy LLM Cost", "Amazon Nova Cost"];
+
+        new Chart(ctxCost, {
+            type: 'bar',
+            data: {
+                labels: rawCostLabels.map(l => wrapLabel(l, 16)),
+                datasets: [{
+                    label: 'Cost per Packet ($)',
+                    data: [0.15, 0.02],
+                    backgroundColor: ['#fbbf24', '#1e3a8a'],
+                    borderColor: ['#d97706', '#172554'],
+                    borderWidth: 1,
+                    barPercentage: 0.5
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltipOptions
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'USD ($)' }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 3: ROI CAPACITY ---
+        const ctxRoi = document.getElementById('roiChart').getContext('2d');
+        const rawRoiLabels = ["Current State", "Future State"];
+        
+        new Chart(ctxRoi, {
+            type: 'bar',
+            data: {
+                labels: rawRoiLabels,
+                datasets: [
+                    {
+                        label: 'Manual Effort Hours',
+                        data: [10000, 250],
+                        backgroundColor: '#ef4444',
+                    },
+                    {
+                        label: 'Automated Capacity',
+                        data: [0, 9750],
+                        backgroundColor: '#10b981',
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: { 
+                        stacked: true,
+                        title: { display: true, text: 'Monthly Hours' }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 4: PLOTLY 3D RISK ANALYSIS ---
+        const filePages = [12, 45, 8, 22, 60, 15, 30, 5, 55, 18, 90, 25, 10, 35, 42];
+        const gapsInHistory = [0, 2, 0, 1, 5, 0, 1, 0, 3, 0, 8, 1, 0, 2, 4];
+        const severityScore = [10, 80, 5, 40, 95, 15, 50, 5, 85, 20, 99, 45, 10, 60, 75];
+
+        const trace1 = {
+            x: filePages,
+            y: gapsInHistory,
+            z: severityScore,
+            mode: 'markers',
+            marker: {
+                size: 8,
+                color: severityScore,
+                colorscale: 'Viridis',
+                opacity: 0.8
+            },
+            type: 'scatter3d'
+        };
+
+        const layout = {
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            scene: {
+                xaxis: { title: 'File Pages' },
+                yaxis: { title: 'Work Gaps' },
+                zaxis: { title: 'Risk Score' }
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)'
+        };
+
+        Plotly.newPlot('riskPlot', [trace1], layout, {displayModeBar: false, responsive: true});
+
+    </script>
+</body>
+</html>
